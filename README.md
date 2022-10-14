@@ -59,4 +59,4 @@ Resumen proceso de desarrollo:
 
 ---
 
-## [ir a la pagina](https://heric-olier-blackjack-game.netlify.app/) 👈
+## [DEMO]() 👈
