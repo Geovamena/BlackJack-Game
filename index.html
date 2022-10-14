@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blackjack Game</title>
+
+    <!-- fontawesome kit -->
+
+    <script
+      src="https://kit.fontawesome.com/4d63ed8f35.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/game.css" />
+    <link rel="stylesheet" href="assets/css/visit-counter.css" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <!---- favicon ---->
+
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo-favi.svg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <!-- Main -->
+    <main>
+      <div class="container">
+        <!-- Modal Settings -->
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Settings</h5>
+                <i
+                  class="fas fa-times btn-close-menu btn-action-menu"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></i>
+              </div>
+              <div
+                class="modal-body d-flex justify-content-between flex-column"
+              >
+                <div class="d-flex flex-column statistics">
+                  <h5 class="fw-bolder text-center">Statistics</h5>
+                  <div class="d-flex justify-content-between">
+                    <p>Games Played</p>
+                    <span id="games-played">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Games Won</p>
+                    <span id="games-won">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Games Lost</p>
+                    <span id="games-lost">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Games Draw</p>
+                    <span id="games-draw">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>Games Restart</p>
+                    <span id="games-restart">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <p>High Score</p>
+                    <span id="high-score">0</span>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <button id="reset-score">Reset Highest score</button>
+                  </div>
+                  <div class="modal-body d-flex justify-content-between">
+                    <div class="d-flex justify-content-between">
+                      <p>Money Won $</p>
+                      <span id="money-won">0</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p>Money Lost $</p>
+                      <span id="money-lost">0</span>
+                    </div>
+                  </div>
+                  <div class="modal-body d-flex justify-content-center">
+                    <div
+                      class="d-flex justify-content-center visitor-container"
+                    >
+                      <p class="text-danger">You are the visitor number</p>
+                      <div id="sfcmcedaa7dfpyp8qsnh7q9dq43s771fnkf"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-restart-game d-flex justify-content-center">
+                  <button class="btn btn-danger" id="btn-restart-game">
+                    Restart Game
+                  </button>
+                </div>
+              </div>
+              <div
+                class="modal-footer d-flex justify-content-center align-items-center"
+              >
+                <div class="footer__content-copyright">
+                  <p>
+                    Copyright © 2022 | Coded with
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    by
+                    <a
+                      href="https://heric-olier-frontend-developer.netlify.app/"
+                      target="_blank"
+                    >
+                      Heric Olier
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal help -->
+        <div
+          class="modal fade"
+          id="staticBackdropHelp"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-help">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Help</h5>
+                <i
+                  class="fas fa-times btn-action-menu btn-close-menu"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></i>
+              </div>
+              <div
+                class="modal-body d-flex justify-content-between flex-column"
+              >
+                <div class="d-flex flex-column statistics">
+                  <h5 class="fw-bolder text-center">How to play</h5>
+                  <p>
+                    The goal of Blackjack is to beat the dealer's hand without
+                    going over 21.
+                  </p>
+                  <p>
+                    Face cards are worth 10. Aces are worth 1 or 11, whichever
+                    makes a better hand.
+                  </p>
+                  <p>
+                    Each player starts with two cards, one of the dealer's cards
+                    is hidden until the end.
+                  </p>
+                  <p>
+                    To 'Hit' is to ask for another card. To 'Stand' is to hold
+                    your total and end your turn.
+                  </p>
+                  <p>
+                    To 'Double Down' is to double your bet, and receive one and
+                    only one more card.
+                  </p>
+                  <p>
+                    If you go over 21 you bust, and the dealer wins regardless
+                    of the dealer's hand.
+                  </p>
+                  <p>
+                    If you run out of chips you can always restart the game with
+                    the 'Restart Game' button in the settings section.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bet Ammount & Balance -->
+        <div
+          class="bet bet-game d-flex justify-content-between align-items-center"
+        >
+          <!-- <div class="bet-amount">
+                <span id="bet-amount" data-bet-amount-game>0</span>
+              </div> -->
+          <div class="bet-image bet-image-game">
+            <img src="assets/images/icon-bet-amount.png" alt="chip-10" />
+          </div>
+          <div class="bet-balance">
+            <span id="bet-balance" data-bet-balance></span>
+          </div>
+          <div class="bet-image bet-image-game">
+            <img src="assets/images/icon-bet-amount.png" alt="chip-10" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <!-- Top Button Section Score, Menu, Help  -->
+            <div class="card bg-transparent text-center" id="card__game-home">
+              <div
+                class="card-body d-flex justify-content-center flex-column align-items-center"
+              >
+                <div class="player__score-counter">
+                  <span class="level__score" id="player__score-counter"
+                    >Score</span
+                  >
+                  <span id="score-player" data-score-player>0</span>
+                </div>
+                <i
+                  class="fa-solid fa-question help-btn btn-action-menu"
+                  id="help-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdropHelp"
+                ></i>
+                <i
+                  class="fa-solid fa-bars menu-btn btn-action-menu"
+                  id="menu-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                ></i>
+                <div class="languaje-change-btn btn-action-menu">
+                  <img
+                    id="btn-english"
+                    src="assets/images/english-icon.png"
+                    alt="english icon"
+                  />
+                  <img
+                    id="btn-spanish"
+                    src="assets/images/spanish-icon.png"
+                    alt="spanish icon"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- End Game home section  -->
+            <!-- Start Game board section  -->
+            <div
+              class="card bg-transparent text-center d-flex justify-content-center align-items-center"
+              id="card__game-board"
+            >
+              <div class="game-board">
+                <div
+                  class="card-body d-flex justify-content-center flex-column align-items-center"
+                >
+                  <div class="dealer">
+                    <!-- <h1 class="title-dealer text-white">Dealer</h1> -->
+                    <div class="dealer__cards d-flex">
+                      <!-- <img id="card-dealer-front" src="assets/cards/10C.png" alt="card-front" />
+                      <img id="card-dealer-back"
+                        src="assets/cards/red_back-alt.png"
+                        alt="card-back"
+                      /> -->
+                    </div>
+                    <div class="dealer__score">
+                      <span id="dealer-score">0</span>
+                    </div>
+                  </div>
+
+                  <div class="player">
+                    <!-- <h1 class="title-player text-white">Player</h1> -->
+                    <div class="player__cards d-flex">
+                      <!-- <img
+                        class="card-rotate card-back"
+                        id="card-player-back"
+                        src="assets/cards/3S.png"
+                        alt="card-back"
+                      />
+                      <img
+                        class="card-rotate card-front"
+                        id="card-player-front"
+                        src="assets/cards/6D.png"
+                        alt="card-front"
+                      /> -->
+                    </div>
+                    <div class="player__score">
+                      <span id="player-score">0</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- End Game board section  -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-frame">
+          <div class="bet-amount-container">
+            <div
+              class="bet-amount-center d-flex justify-content-center align-items-center flex-wrap"
+            >
+              <div class="bet-amount"></div>
+            </div>
+            <div class="bet-amount-home">
+              <span id="bet-amount-home" data-bet-amount=""></span>
+            </div>
+          </div>
+          <div class="title-home">
+            <h1
+              class="title-home__text text-light text-center"
+              id="title-bet-home"
+            >
+              Place Your Bet
+            </h1>
+            <i class="fa-solid fa-angles-down"></i>
+            <div
+              class="title-home-container d-flex justify-content-center align-items-center flex-wrap"
+            ></div>
+          </div>
+          <!-- Start Btn home section  -->
+          <div class="btn-action-home-container">
+            <div
+              class="btn-action-home d-flex justify-content-around align-items-center flex-wrap"
+            >
+              <div class="btn-clear-container">
+                <a href="#" class="btn btn-danger btn-home" id="btn-clear">
+                  <i class="fa-solid fa-times"></i>
+                </a>
+                <span>Clear</span>
+              </div>
+              <div class="btn-start-game-container">
+                <a
+                  href="#"
+                  class="btn btn-success btn-home"
+                  id="btn-start-game"
+                >
+                  <img
+                    src="assets/images/btn-hit-icon.svg"
+                    alt="btn hit icon"
+                  />
+                </a>
+                <span>Deal</span>
+                <!-- <h1>(Hold to All-in)</h1> -->
+              </div>
+            </div>
+          </div>
+          <!-- End Btn home section  -->
+          <div class="game-board__actions">
+            <div class="btn-hit-container">
+              <a href="#" class="btn btn-success" id="btn-hit">
+                <img src="assets/images/btn-hit-icon.svg" alt="btn hit icon" />
+              </a>
+              <span>Hit</span>
+            </div>
+            <div class="btn-stand-container">
+              <a href="#" class="btn btn-danger" id="btn-stand">
+                <img
+                  src="assets/images/btn-stand-icon.svg"
+                  alt="btn stand icon"
+                />
+              </a>
+              <span>Stand</span>
+            </div>
+            <div class="btn-double-container">
+              <a href="#" class="btn btn-primary" id="btn-double">
+                <img
+                  src="assets/images/btn-double-icon.svg"
+                  alt="btn double icon"
+                />
+              </a>
+              <span>Double</span>
+            </div>
+          </div>
+          <!--chips-->
+          <div class="chips-container">
+            <div
+              class="chips d-flex justify-content-center align-items-center flex-wrap"
+            >
+              <div class="chip" id="chip-10" data-value="10">
+                <img
+                  class="chip-bottom"
+                  src="assets/images/poker-chip-10.png"
+                  alt="chip-10"
+                />
+              </div>
+              <div class="chip" id="chip-25" data-value="25">
+                <img
+                  class="chip-bottom"
+                  src="assets/images/poker-chip-25.png"
+                  alt="chip-25"
+                />
+              </div>
+              <div class="chip" id="chip-50" data-value="50">
+                <img
+                  class="chip-bottom"
+                  src="assets/images/poker-chip-50.png"
+                  alt="chip-50"
+                />
+              </div>
+              <div class="chip" id="chip-100" data-value="100">
+                <img
+                  class="chip-bottom"
+                  src="assets/images/poker-chip-100.png"
+                  alt="chip-100"
+                />
+              </div>
+              <div class="chip" id="chip-250" data-value="250">
+                <img
+                  class="chip-bottom"
+                  src="assets/images/poker-chip-250.png"
+                  alt="chip-250"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="screen__loading">
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+          role="progressbar"
+          aria-valuenow="75"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style="width: 100%"
+        ></div>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://counter9.stat.ovh/private/counter.js?c=mcedaa7dfpyp8qsnh7q9dq43s771fnkf&down=async"
+      async
+    ></script>
+    <noscript
+      ><a
+        href="https://www.contadorvisitasgratis.com"
+        title="contador de visitas"
+        ><img
+          src="https://counter9.stat.ovh/private/contadorvisitasgratis.php?c=mcedaa7dfpyp8qsnh7q9dq43s771fnkf"
+          border="0"
+          title="contador de visitas"
+          alt="contador de visitas" /></a
+    ></noscript>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="assets/js/screen-loading.js"></script> -->
+    <script type="module" src="assets/js/game.js"></script>
+  </body>
+</html>

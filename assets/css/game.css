@@ -1,0 +1,447 @@
+:root {
+  --color-dark: #121212;
+  --color-light: #f5f5f5;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  overflow: hidden;
+  margin: 50px 0;
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.player,
+.dealer {
+  width: 100%;
+  height: 100%;
+}
+
+.title-dealer,
+.title-player {
+  font-size: 1rem;
+  text-align: center;
+  /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.644); */
+  background-color: var(--color-dark);
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.dealer__cards,
+.player__cards {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 34px 0;
+  position: relative;
+  justify-content: center;
+}
+
+.player__cards.game-over,
+.dealer__cards.game-over {
+  -webkit-animation: slide-out-tr 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-tr 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes slide-out-tr {
+  0% {
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px) translateX(1000px);
+            transform: translateY(-1000px) translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-tr {
+  0% {
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px) translateX(1000px);
+            transform: translateY(-1000px) translateX(1000px);
+    opacity: 0;
+  }
+}
+
+
+
+.dealer__cards img,
+.player__cards img {
+  width: 134px;
+  position: absolute;
+  left: 100%;
+  margin-left: 300px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1.2) 0.5s all;
+  border-radius: 12px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.452);
+}
+
+.dealer__cards img.hidden,
+.player__cards img.hidden {
+  left: 100%;
+  margin-left: 300px;
+}
+
+.player__cards img:first-child,
+.dealer__cards img:first-child {
+  transform: translateX(100%) rotate(-5deg);
+}
+
+.player__cards img:nth-child(2),
+.dealer__cards img:nth-child(2) {
+  transform: translateX(100%);
+}
+
+.player__cards img:first-child.active {
+  left: 50%;
+  margin-left: -80px;
+  top: 0;
+  transform: translate(0, 0) rotate(-5deg);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:first-child.active {
+  left: 50%;
+  margin-left: -80px;
+  bottom: 0;
+  transform: translate(0, 0) rotate(-5deg);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.player__cards img:nth-child(2).active {
+  left: 50%;
+  margin-left: -50px;
+  top: 0;
+  transform: translate(0, 0);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:nth-child(2).active {
+  left: 50%;
+  margin-left: -50px;
+  bottom: 0;
+  transform: translate(0, 0);
+}
+
+.dealer__cards img:nth-child(2).flip-vertical-left {
+  -webkit-animation: flip-vertical-left 0.4s
+    cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+}
+
+@-webkit-keyframes flip-vertical-left {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(-360deg);
+    transform: rotateY(-360deg);
+  }
+}
+@keyframes flip-vertical-left {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(-360deg);
+    transform: rotateY(-360deg);
+  }
+}
+
+.dealer__cards img:nth-child(2).flip-vertical-right {
+  -webkit-animation: flip-vertical-right 0.4s
+    cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+}
+
+@-webkit-keyframes flip-vertical-right {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flip-vertical-right {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+}
+
+.player__cards img:nth-child(3).active {
+  left: 50%;
+  margin-left: -20px;
+  top: 0;
+  transform: translate(0, 0);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:nth-child(3).active {
+  left: 50%;
+  margin-left: -20px;
+  bottom: 0;
+  transform: translate(0, 0);
+}
+
+.player__cards img:nth-child(4).active {
+  left: 50%;
+  margin-left: 10px;
+  top: 0;
+  transform: translate(0, 0);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:nth-child(4).active {
+  left: 50%;
+  margin-left: 10px;
+  bottom: 0;
+  transform: translate(0, 0);
+}
+
+.player__cards img:nth-child(5).active {
+  left: 50%;
+  margin-left: -49px;
+  top: 35px;
+  transform: translate(0, 0);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:nth-child(5).active {
+  left: 50%;
+  margin-left: 40px;
+  bottom: 0;
+  transform: translate(0, 0);
+}
+
+.player__cards img:nth-child(6).active {
+  left: 50%;
+  margin-left: 70px;
+  top: 0;
+  transform: translate(0, 0);
+  animation: dealer-cardflip 0.45s linear;
+}
+
+.dealer__cards img:nth-child(6).active {
+  left: 50%;
+  margin-left: 70px;
+  bottom: 0;
+  transform: translate(0, 0);
+}
+
+@keyframes dealer-cardflip {
+  0% {
+    transform: rotateY(25deg);
+  }
+  50% {
+    transform: rotateY(100deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* .player__cards img.game-finish,
+.dealer__cards img.game-finish {
+  transform: translate(-20rem, 0) !important;
+} */
+
+.dealer__cards img:hover,
+.player__cards img:hover {
+  transform: scale(1.1) !important;
+  z-index: 1;
+}
+
+.player__card {
+  position: relative;
+  left: -50%;
+}
+
+.dealer__score,
+.player__score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 28px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.699),
+    rgba(0, 0, 0, 0.712)
+  );
+  border-radius: 5px;
+  position: absolute;
+  border: 1px solid rgb(5 119 50);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.dealer__score {
+  top: 200px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1.2) 0.65s;
+  transform: scale(0);
+}
+
+.player__score {
+  bottom: 0;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1.2) 0.65s;
+  transform: scale(0);
+}
+.player__score.active {
+  bottom: 240px;
+  transform: scale(1);
+}
+
+.dealer__score.active {
+  top: 0;
+  transform: scale(1);
+}
+
+.dealer__score span,
+.player__score span {
+  font-size: 1.2rem;
+  color: var(--color-light);
+  font-weight: bold;
+}
+
+.game-board__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 40px;
+  opacity: 0;
+  transform: translate(0, 10px) scale(0);
+  transition: all 0.15s ease-in-out;
+}
+
+.game-board__actions.visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.btn-hit-container,
+.btn-stand-container,
+.btn-double-container,
+.btn-clear-container,
+.btn-start-game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.btn-hit-container span,
+.btn-stand-container span,
+.btn-double-container span,
+.btn-clear-container span,
+.btn-start-game-container span {
+  font-size: 1rem;
+  color: var(--color-light);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.822);
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.btn-start-game-container h1 {
+  font-size: 0.8rem;
+  font-weight: 200;
+  color: var(--color-light);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.822);
+  margin-top: -3px;
+}
+
+#btn-hit,
+#btn-stand,
+#btn-double,
+#btn-clear,
+#btn-start-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  padding: 0 !important;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.719);
+  transition: all 0.3s ease;
+}
+
+#btn-clear,
+#btn-start-game {
+  font-size: 2.4rem;
+}
+
+#btn-start-game {
+  border: 2px solid var(--color-light);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#btn-start-game.disabled,
+#btn-hit.disabled,
+#btn-stand.disabled,
+#btn-double.disabled {
+  cursor: not-allowed !important;
+  animation: none !important;
+  filter: grayscale(100%) !important;
+  pointer-events: none !important;
+}
+
+.btn-hit-container img,
+.btn-stand-container img,
+.btn-double-container img,
+#btn-start-game img {
+  width: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn-double-container img {
+  width: 34px;
+}
