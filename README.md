@@ -59,4 +59,4 @@ Resumen proceso de desarrollo:
 
 ---
 
-## [DEMO]() 👈
+## [DEMO](https://blackjack-game-geovannimena.netlify.app/) 👈
